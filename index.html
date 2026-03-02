@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>n GPT - Full Simulation</title>
+<style>
+body, html {
+    margin:0; padding:0;
+    width:100%; height:100%;
+    font-family:'Courier New', monospace;
+    background:black; color:#00ff00;
+    overflow:hidden;
+}
+.screen { display:none; width:100%; height:100%; position:absolute; top:0; left:0; background-size:cover; background-position:center;}
+.visible { display:block; }
+.button-container { position:absolute; bottom:50px; width:100%; text-align:center; z-index:20;}
+button {
+    padding:15px 30px;
+    background:transparent;
+    border:2px solid #00ff00;
+    color:#00ff00;
+    font-size:18px;
+    margin:10px;
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow:0 0 15px #00ff00;
+    transition: all 0.2s;
+}
+button:active { transform: scale(0.95); box-shadow:0 0 25px #00ff00;}
+input { padding:10px; font-size:16px; border:2px solid #00ff00; background:black; color:#00ff00; border-radius:5px; margin:5px; width:80%;}
+h1,h2,h3,p { text-shadow:0 0 5px #00ff00,0 0 10px #00ff00;}
+video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none; z-index:10;}
+</style>
+</head>
+<body>
+
+<!-- =================== -->
+<!--      GATE ZERO      -->
+<!-- =================== -->
+<section id="gate" class="screen visible" style="background-image:url('1.jpeg');">
+  <h1>WARNING</h1>
+  <p>هذا الموقع تحت مسؤوليتك الشخصية</p>
+  <div class="button-container">
+    <button id="acceptBtn">ACCEPT</button>
+    <button id="exitBtn">EXIT</button>
+  </div>
+</section>
+
+<!-- =================== -->
+<!--      BIOMETRIC      -->
+<!-- =================== -->
+<section id="biometric" class="screen" style="background-image:url('2.jpeg');">
+  <h2>Biometric Scan Required</h2>
+  <div class="button-container">
+    <button id="scanBtn">SCAN</button>
+  </div>
+</section>
+
+<!-- =================== -->
+<!--      PHONE ATTACK    -->
+<!-- =================== -->
+<section id="phone" class="screen" style="background-image:url('3.jpeg');">
+  <h2>Enter Phone Number</h2>
+  <input type="text" id="phoneInput" placeholder="Country Code + Number">
+  <div class="button-container">
+    <button id="phoneNextBtn">NEXT</button>
+  </div>
+</section>
+
+<!-- =================== -->
+<!--      GMAIL ATTACK    -->
+<!-- =================== -->
+<section id="gmail" class="screen" style="background-image:url('4.jpeg');">
+  <h2>Enter Gmail Account</h2>
+  <input type="email" id="gmailInput" placeholder="email@example.com">
+  <div class="button-container">
+    <button id="gmailNextBtn">NEXT</button>
+  </div>
+</section>
+
+<!-- =================== -->
+<!--      LINK ATTACK     -->
+<!-- =================== -->
+<section id="linkAttack" class="screen" style="background-image:url('5.jpeg');">
+  <h2>Use Attack Link</h2>
+  <input type="text" value="1487.55./are.fyagra.com" readonly>
+  <div class="button-container">
+    <button id="linkNextBtn">OPEN</button>
+  </div>
+</section>
+
+<!-- =================== -->
+<!--    FINAL VIDEO      -->
+<!-- =================== -->
+<video id="overlayVideoFinal" src="2.mp4" autoplay muted></video>
+
+<!-- =================== -->
+<!--      SCRIPT         -->
+<!-- =================== -->
+<script>
+const gate = document.getElementById('gate');
+const biometric = document.getElementById('biometric');
+const phone = document.getElementById('phone');
+const gmail = document.getElementById('gmail');
+const linkAttack = document.getElementById('linkAttack');
+const videoFinal = document.getElementById('overlayVideoFinal');
+
+// زر قبول Gate
+document.getElementById('acceptBtn').addEventListener('click', ()=>{
+  gate.classList.remove('visible');
+  biometric.classList.add('visible');
+});
+
+// زر خروج
+document.getElementById('exitBtn').addEventListener('click', ()=>{
+  window.close();
+});
+
+// زر Scan البصمة
+document.getElementById('scanBtn').addEventListener('click', ()=>{
+  biometric.classList.remove('visible');
+  phone.classList.add('visible');
+});
+
+// الهاتف NEXT
+document.getElementById('phoneNextBtn').addEventListener('click', ()=>{
+  phone.classList.remove('visible');
+  gmail.classList.add('visible');
+});
+
+// الجيميل NEXT
+document.getElementById('gmailNextBtn').addEventListener('click', ()=>{
+  gmail.classList.remove('visible');
+  linkAttack.classList.add('visible');
+});
+
+// رابط الهجوم NEXT
+document.getElementById('linkNextBtn').addEventListener('click', ()=>{
+  linkAttack.classList.remove('visible');
+  videoFinal.style.display = 'block';
+});
+</script>
+
+</body>
+</html>
